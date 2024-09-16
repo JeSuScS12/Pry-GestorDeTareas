@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Pry_GestorDeTareas
 {
@@ -130,6 +129,60 @@ namespace Pry_GestorDeTareas
 
             tabla.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
             
+        }
+
+        //LLenar el ComboBox con los Estados
+        public void CargarEstados(ComboBox combo)
+        {
+            conectar = new OleDbConnection(cadena);
+            try
+            {
+                conectar.Open();
+                string consulta = "SELECT Estado  FROM Estado";
+                comando = new OleDbCommand(consulta, conectar);
+                OleDbDataReader reader = comando.ExecuteReader();
+
+                // Limpia los items del ComboBox antes de agregar nuevos datos
+                combo.Items.Clear();
+                // Agrega los datos al ComboBox
+                while (reader.Read())
+                {
+                    combo.Items.Add(reader["Estado"].ToString());
+                }
+                reader.Close();
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show("Error" + error);
+            }
+        }
+
+        //Llenar la tabla con estados Especificos
+        public void TablaEstado(DataGridView tabla,int item)
+        {
+            conectar = new OleDbConnection(cadena);
+            try
+            {
+                conectar.Open();
+                string consulta = "SELECT Tareas.IdTarea AS Id, Categoria.NombreCat AS Categoria, Usuarios.Nombre, Tareas.Titulo, Tareas.Descripcion, Tareas.Prioridad, Tareas.FechaC, Estado.Estado\r\n" +
+                    "FROM ((Tareas \r\n" +
+                    "INNER JOIN Categoria ON Tareas.IdCategoria = Categoria.IdCategoria) \r\n" +
+                    "INNER JOIN Usuarios ON Tareas.CreadorTarea = Usuarios.IdUsuario)\r\n" +
+                    "INNER JOIN Estado ON  Tareas.Estado = Estado.IdEstado " +
+                    $"where Tareas.Estado = {item};";
+
+                adaptador = new OleDbDataAdapter(consulta, conectar);
+                DataTable dataTable = new DataTable();
+                adaptador.Fill(dataTable);
+                tabla.DataSource = dataTable;
+
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show("Error" + error);
+            }
+
+            tabla.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
         }
     }
 }

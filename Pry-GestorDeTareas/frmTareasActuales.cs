@@ -17,6 +17,7 @@ namespace Pry_GestorDeTareas
         {
             InitializeComponent();
             dgvTabla.ClearSelection();
+
         }
 
         //Instanciar conexion   
@@ -25,6 +26,7 @@ namespace Pry_GestorDeTareas
         private void frmTareasActuales_Load(object sender, EventArgs e)
         {
             obj.ListarTareas(dgvTabla);
+            obj.CargarEstados(cmbEstados);
             
         }
 
@@ -47,6 +49,24 @@ namespace Pry_GestorDeTareas
                     e.CellStyle.ForeColor = Color.Blue;
                 }
             }
+        }
+
+        private void cmbEstados_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int x = cmbEstados.SelectedIndex;
+
+            obj.TablaEstado(dgvTabla, x+1);
+        }
+
+        private void btnIngresar_Click(object sender, EventArgs e)
+        {
+            cmbEstados.Text = "";
+            obj.ListarTareas(dgvTabla);
+        }
+
+        private void dgvTabla_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
