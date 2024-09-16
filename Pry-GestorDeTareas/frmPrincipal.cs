@@ -15,14 +15,14 @@ namespace Pry_GestorDeTareas
         public frmPrincipal()
         {
             InitializeComponent();
-            AbrirFrm(new frmIngreso());
-            obj.Conect();
         }
 
         //Instancia de conexion
         clsConexion obj = new clsConexion();
 
 
+
+        //Controles de Minmizar  y Cerrar
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -33,7 +33,7 @@ namespace Pry_GestorDeTareas
             this.WindowState = FormWindowState.Minimized;
         }
 
-
+        //Abre los dstintos formularios en un panel dentro del Principal
         private void AbrirFrm(object frmHijo)
         {
             if (this.panelConte.Controls.Count > 0)
@@ -49,14 +49,88 @@ namespace Pry_GestorDeTareas
             frm.Show();
         }
 
-        private void tbnInicio_Click(object sender, EventArgs e)
+        //Hora
+        private void timerHora_Tick(object sender, EventArgs e)
         {
-            AbrirFrm(new frmIngreso());
+            lblHora.Text = DateTime.Now.ToString("HH:mm");
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        //Controles  a Cargar al iniciar el frmPrincipal
+        private void frmPrincipal_Load(object sender, EventArgs e)
         {
+
+            if(clsUsuario.perfil == "Admin")
+            {
+                btnCrearPerfil.Visible = true;
+                lblUser.Text = clsUsuario.user + " 👑";
+            }
+            else
+            {
+                lblUser.Text = clsUsuario.user;
+            }
+            lblPerfil.Text = clsUsuario.cargo;
+
+            btnCrearTarea_Click(sender, e);
+        }
+
+        private void frmPrincipal_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            lblPerfil.Text = "";
+            lblUser.Text = "";
+        }
+
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+            clsUsuario.user = "";
+            clsUsuario.perfil = "";
+
+            this.Close();
+        }
+
+        //Formularios a Abrir
+
+        private void btnCrearTarea_Click(object sender, EventArgs e)
+        {
+            ColorBtn(panelLeft);
+            btnCrearTarea.BackColor = Color.FromArgb(145, 42, 66);
             AbrirFrm(new frmTareasActuales());
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            ColorBtn(panelLeft);
+            btnModificar.BackColor = Color.FromArgb(145, 42, 66);
+            AbrirFrm(new frmModTareas());
+        }
+
+        private void btnCuenta_Click(object sender, EventArgs e)
+        {
+            ColorBtn(panelLeft);
+            btnCuenta.BackColor = Color.FromArgb(145, 42, 66);
+            AbrirFrm(new frmCuenta());
+        }
+
+        private void btnCrearPerfil_Click(object sender, EventArgs e)
+        {
+            ColorBtn(panelLeft);
+            btnCrearPerfil.BackColor = Color.FromArgb(145, 42, 66);
+            AbrirFrm(new frmUsuarios());
+        }
+
+        //Control de Btn
+        public void ColorBtn(Panel panel)
+        {
+            foreach (Control btn in panel.Controls)
+            {
+                if (btn is Button)
+                {
+                    if(btn.BackColor == Color.FromArgb(145, 42, 66))
+                    {
+                        btn.BackColor = Color.FromArgb(121, 35, 55);
+                    }
+                }
+            }
+                
         }
     }
 }
