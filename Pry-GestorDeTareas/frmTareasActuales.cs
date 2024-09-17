@@ -66,7 +66,33 @@ namespace Pry_GestorDeTareas
 
         private void dgvTabla_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (dgvTabla.CurrentRow != null) // Verifica si hay una fila seleccionada
+            {
+                // Obtener la fila seleccionada actualmente
+                DataGridViewRow fila = dgvTabla.CurrentRow;
 
+                // Obtener los valores de las celdas de la fila seleccionada
+                int idTarea = Convert.ToInt32(fila.Cells["Id"].Value);
+                string cat = fila.Cells["Categoria"].Value.ToString();
+                string nombre = fila.Cells["Nombre"].Value.ToString(); 
+                string title = fila.Cells["Titulo"].Value.ToString();
+                string desc = fila.Cells["Descripcion"].Value.ToString();
+                string prio = fila.Cells["Prioridad"].Value.ToString();
+                DateTime fecha = Convert.ToDateTime(fila.Cells["FechaC"].Value);
+                string estado = fila.Cells["Estado"].Value.ToString();
+
+                //aux = Convert.ToInt32(fila.Cells["Codigo"].Value);
+
+                // Mostrar los valores en la consola o utilizarlos según sea necesario
+                lblCategoria.Text = cat;
+                lblCreador.Text = nombre;
+                lblTitulo.Text = title;
+                lblDescripcion.Text = desc;
+                lblPrioridad.Text = prio;
+                lblFechaC.Text = fecha.ToString("dd MMMM, yyyy");
+                lblEstado.Text = estado;
+                
+            }
         }
     }
 }
