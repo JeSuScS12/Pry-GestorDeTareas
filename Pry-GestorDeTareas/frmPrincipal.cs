@@ -52,7 +52,7 @@ namespace Pry_GestorDeTareas
         //Hora
         private void timerHora_Tick(object sender, EventArgs e)
         {
-            lblHora.Text = DateTime.Now.ToString("HH:mm");
+            lblHora.Text = DateTime.Now.ToString("HH:mm:ss");
         }
 
         //Controles  a Cargar al iniciar el frmPrincipal

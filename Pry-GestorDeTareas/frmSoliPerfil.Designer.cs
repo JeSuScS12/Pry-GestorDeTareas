@@ -33,8 +33,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.chkMostrar = new System.Windows.Forms.CheckBox();
+            this.txtPass = new System.Windows.Forms.TextBox();
             this.btnSolicitar = new System.Windows.Forms.Button();
             this.txtUsuario = new System.Windows.Forms.TextBox();
             this.panelUp.SuspendLayout();
@@ -60,7 +60,7 @@
             this.btnSalir.Location = new System.Drawing.Point(405, 0);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(35, 39);
-            this.btnSalir.TabIndex = 4;
+            this.btnSalir.TabIndex = 0;
             this.btnSalir.Text = "X";
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
@@ -98,24 +98,26 @@
             this.label2.TabIndex = 14;
             this.label2.Text = "Usuario";
             // 
-            // checkBox1
+            // chkMostrar
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.Location = new System.Drawing.Point(45, 189);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(66, 20);
-            this.checkBox1.TabIndex = 13;
-            this.checkBox1.Text = "Mostrar";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.chkMostrar.AutoSize = true;
+            this.chkMostrar.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkMostrar.Location = new System.Drawing.Point(45, 189);
+            this.chkMostrar.Name = "chkMostrar";
+            this.chkMostrar.Size = new System.Drawing.Size(66, 20);
+            this.chkMostrar.TabIndex = 13;
+            this.chkMostrar.Text = "Mostrar";
+            this.chkMostrar.UseVisualStyleBackColor = true;
+            this.chkMostrar.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
-            // textBox1
+            // txtPass
             // 
-            this.textBox1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(45, 162);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(180, 21);
-            this.textBox1.TabIndex = 12;
+            this.txtPass.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPass.Location = new System.Drawing.Point(45, 162);
+            this.txtPass.Name = "txtPass";
+            this.txtPass.PasswordChar = '●';
+            this.txtPass.Size = new System.Drawing.Size(180, 21);
+            this.txtPass.TabIndex = 1;
             // 
             // btnSolicitar
             // 
@@ -123,9 +125,10 @@
             this.btnSolicitar.Location = new System.Drawing.Point(265, 114);
             this.btnSolicitar.Name = "btnSolicitar";
             this.btnSolicitar.Size = new System.Drawing.Size(122, 54);
-            this.btnSolicitar.TabIndex = 11;
+            this.btnSolicitar.TabIndex = 5;
             this.btnSolicitar.Text = "Solicitar";
             this.btnSolicitar.UseVisualStyleBackColor = true;
+            this.btnSolicitar.Click += new System.EventHandler(this.btnSolicitar_Click);
             // 
             // txtUsuario
             // 
@@ -133,23 +136,24 @@
             this.txtUsuario.Location = new System.Drawing.Point(45, 100);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(180, 21);
-            this.txtUsuario.TabIndex = 10;
+            this.txtUsuario.TabIndex = 0;
             // 
-            // frmCrearPerfil
+            // frmSoliPerfil
             // 
+            this.AcceptButton = this.btnSolicitar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(440, 253);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.chkMostrar);
+            this.Controls.Add(this.txtPass);
             this.Controls.Add(this.btnSolicitar);
             this.Controls.Add(this.txtUsuario);
             this.Controls.Add(this.panelUp);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmCrearPerfil";
+            this.Name = "frmSoliPerfil";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmCrearPerfil";
             this.panelUp.ResumeLayout(false);
@@ -164,8 +168,8 @@
         private System.Windows.Forms.Panel panelUp;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.CheckBox chkMostrar;
+        private System.Windows.Forms.TextBox txtPass;
         private System.Windows.Forms.Button btnSolicitar;
         private System.Windows.Forms.TextBox txtUsuario;
         private System.Windows.Forms.Label label1;

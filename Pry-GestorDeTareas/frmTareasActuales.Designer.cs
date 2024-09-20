@@ -71,6 +71,8 @@
             // dgvTabla
             // 
             this.dgvTabla.AllowUserToAddRows = false;
+            this.dgvTabla.AllowUserToResizeColumns = false;
+            this.dgvTabla.AllowUserToResizeRows = false;
             this.dgvTabla.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvTabla.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvTabla.BorderStyle = System.Windows.Forms.BorderStyle.None;
